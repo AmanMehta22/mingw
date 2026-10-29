@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<students>
-</students>
+<?xml-stylesheet type="text/xsl" href="data.xsl"?>
+
+<student>
+    <rollno>101</rollno>
+    <name>Aman</name>
+    <course>CSE</course>
+    <semester>5</semester>
+    <email>aman@gmail.com</email>
+</student>

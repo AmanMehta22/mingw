@@ -101,18 +101,241 @@
         font-size: .88rem;
         margin-top: 30px;
     }
+
+    .note code {
+        background: #eae5db;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-family: Consolas, "Courier New", monospace;
+    }
+
+    /* --- Tab navigation --- */
+    .tabs {
+        max-width: 900px;
+        margin: 22px auto 0;
+        padding: 0 16px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .tab { flex: 1; }
+    .tab.active { background: #1a7f37; border-color: #1a7f37; }
+    .tab.active:hover { background: #1a7f37; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* --- Web practical cards --- */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+    }
+
+    .card {
+        background: #fff;
+        border: 1px solid #ddd6c9;
+        border-radius: 8px;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .card .num {
+        font-size: .72rem;
+        letter-spacing: 1.5px;
+        color: #8a8375;
+    }
+
+    .card h3 { margin: 0; font-size: 1.02rem; }
+    .card p { margin: 0; font-size: .87rem; color: #555; flex: 1; }
+
+    .card .links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+    }
+
+    a.btn {
+        display: inline-block;
+        font-size: .85rem;
+        padding: 6px 14px;
+        border: 1px solid #1e1e1e;
+        background: #1e1e1e;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    a.btn:hover { background: #444; border-color: #444; }
+
+    a.btn.alt {
+        background: #fff;
+        color: #1e1e1e;
+    }
+
+    a.btn.alt:hover { background: #f0ece3; }
+
+    .tag {
+        font-size: .7rem;
+        color: #8a5a00;
+        background: #fdf3dd;
+        border: 1px solid #f0dfae;
+        border-radius: 4px;
+        padding: 2px 6px;
+    }
 </style>
 </head>
 <body>
 
 <header>
-    <h1>Networking Practicals</h1>
-    <p>Questions &amp; C Programs — click a button to copy</p>
+    <h1>Practicals</h1>
+    <p>Web (01–12) &amp; Networking C programs — open a file or copy code</p>
 </header>
 
-<main id="list"></main>
+<nav class="tabs">
+    <button type="button" class="tab active" data-tab="web">Web Practicals</button>
+    <button type="button" class="tab" data-tab="c">C Programs</button>
+</nav>
 
-<p class="note">Frontend only — no server needed. Just open this file in a browser.</p>
+<main>
+
+<section id="web" class="panel active">
+<div class="grid">
+
+    <div class="card">
+        <span class="num">PRACTICAL 01</span>
+        <h3>HTML Table</h3>
+        <p>Student marks table built with headers and rows.</p>
+        <div class="links">
+            <a class="btn" href="01_table/table.html" target="_blank" rel="noopener">Open</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 02</span>
+        <h3>Frames</h3>
+        <p>Three-column frameset loading three separate pages.</p>
+        <div class="links">
+            <a class="btn" href="02_frames/frames.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn alt" href="02_frames/frame1.html" target="_blank" rel="noopener">Frame 1</a>
+            <a class="btn alt" href="02_frames/frame2.html" target="_blank" rel="noopener">Frame 2</a>
+            <a class="btn alt" href="02_frames/frame3.html" target="_blank" rel="noopener">Frame 3</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 03</span>
+        <h3>CSS — Internal &amp; External</h3>
+        <p>Same boxes styled once inside the page, once from a stylesheet.</p>
+        <div class="links">
+            <a class="btn" href="03_css/internal.html" target="_blank" rel="noopener">Internal</a>
+            <a class="btn" href="03_css/external.html" target="_blank" rel="noopener">External</a>
+            <a class="btn alt" href="03_css/style.css" target="_blank" rel="noopener">style.css</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 04</span>
+        <h3>Relative Positioning</h3>
+        <p>A div shifted from its normal flow position with top/left.</p>
+        <div class="links">
+            <a class="btn" href="04_relative_positioning/relative.html" target="_blank" rel="noopener">Open</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 05</span>
+        <h3>Relative Boxes</h3>
+        <p>Three boxes moved apart with increasing top/left offsets.</p>
+        <div class="links">
+            <a class="btn" href="05_relative_boxes/boxes.html" target="_blank" rel="noopener">Open</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 06</span>
+        <h3>Dialog Boxes</h3>
+        <p>alert, prompt and confirm with the result written back to the page.</p>
+        <div class="links">
+            <a class="btn" href="06_dialogs/dialogs.html" target="_blank" rel="noopener">Open</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 07</span>
+        <h3>Registration Validation</h3>
+        <p>Regex checks for name, email and a 10-digit mobile number.</p>
+        <div class="links">
+            <a class="btn" href="07_registration/registration.html" target="_blank" rel="noopener">Open</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 08</span>
+        <h3>Student Record in XML</h3>
+        <p>A student record as pure XML, displayed through its XSL stylesheet.</p>
+        <div class="links">
+            <a class="btn" href="08_xml_submit/data.xml" target="_blank" rel="noopener">Open</a>
+            <a class="btn alt" href="08_xml_submit/data.xsl" target="_blank" rel="noopener">data.xsl</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 09</span>
+        <h3>XSLT Transformation</h3>
+        <p>students.xml transformed into an HTML table by students.xsl.</p>
+        <div class="links">
+            <a class="btn" href="09_xslt/students.xml" target="_blank" rel="noopener">Open</a>
+            <a class="btn alt" href="09_xslt/students.xsl" target="_blank" rel="noopener">students.xsl</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 10</span>
+        <h3>PHP — Variables &amp; Loops</h3>
+        <p>Arithmetic, if/else, while, for and foreach in one script.</p>
+        <div class="links">
+            <a class="btn" href="10_php_basics/variables_loops.php" target="_blank" rel="noopener">Open</a>
+            <span class="tag">needs local PHP server</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 11</span>
+        <h3>PHP — Functions</h3>
+        <p>String, numeric, array and date functions side by side.</p>
+        <div class="links">
+            <a class="btn" href="11_php_functions/functions.php" target="_blank" rel="noopener">Open</a>
+            <span class="tag">needs local PHP server</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="num">PRACTICAL 12</span>
+        <h3>JavaScript Events</h3>
+        <p>click, mouseover, mouseout and select handlers in action.</p>
+        <div class="links">
+            <a class="btn" href="12_events/events.html" target="_blank" rel="noopener">Open</a>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<section id="c" class="panel">
+<div id="list"></div>
+</section>
+
+</main>
+
+<p class="note">
+    Web pages: just open them in your browser.<br>
+    Practicals 10–11 are PHP — run <code>php -S localhost:8000</code> in this folder first.
+</p>
 
 <script>
 const practicals = [
@@ -557,6 +780,25 @@ practicals.forEach(p => {
     art.append(head, body);
     list.appendChild(art);
 });
+</script>
+
+<script>
+const tabs = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".panel");
+
+function showTab(name) {
+    tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+    panels.forEach(p => p.classList.toggle("active", p.id === name));
+}
+
+tabs.forEach(t => t.addEventListener("click", () => {
+    showTab(t.dataset.tab);
+    try { history.replaceState(null, "", "#" + t.dataset.tab); } catch (e) {}
+}));
+
+// deep link, e.g. q7x2.html#c opens straight to the C programs
+if (location.hash === "#c" || location.hash === "#web")
+    showTab(location.hash.slice(1));
 </script>
 
 </body>
