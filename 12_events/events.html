@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Events</title>
+<script>
+function clickEvent() {
+  document.getElementById("demo").innerHTML = "Button Clicked!";
+}
+
+function mouseIn() {
+  document.getElementById("demo").innerHTML = "Mouse Entered the box";
+  document.getElementById("box").style.backgroundColor = "lightgreen";
+}
+
+function mouseOut() {
+  document.getElementById("demo").innerHTML = "Mouse Left the box";
+  document.getElementById("box").style.backgroundColor = "lightblue";
+}
+
+function selectEvent() {
+  var text = document.getElementById("myText");
+  document.getElementById("demo").innerHTML = "Selected Text: " +
+    text.value.substring(text.selectionStart, text.selectionEnd);
+}
+</script>
+</head>
+<body>
+
+<h2>JavaScript Events</h2>
+
+<button onclick="clickEvent()">Click Me</button>
+
+<div id="box" style="width: 250px; height: 80px; background: lightblue; border: 2px solid navy; margin-top: 20px; padding: 10px;"
+     onmouseover="mouseIn()"
+     onmouseout="mouseOut()">
+Mouse Over Me
+</div>
+
+<br><br>
+<input type="text" id="myText" value="Select this text" onselect="selectEvent()">
+
+<p id="demo"></p>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dialog Boxes</title>
+<script>
+function showAlert() {
+  alert("This is an Alert Box!");
+}
+
+function showPrompt() {
+  var name = prompt("Enter your name:");
+  if (name != null)
+    document.getElementById("result").innerHTML = "You entered: " + name;
+}
+
+function showConfirm() {
+  var ans = confirm("Do you want to continue?");
+  if (ans)
+    document.getElementById("result").innerHTML = "You clicked OK";
+  else
+    document.getElementById("result").innerHTML = "You clicked Cancel";
+}
+</script>
+</head>
+<body>
+
+<h2>Dialog Boxes</h2>
+
+<button onclick="showAlert()">Alert Box</button>
+<button onclick="showPrompt()">Prompt Box</button>
+<button onclick="showConfirm()">Confirm Box</button>
+
+<p id="result"></p>
+
+</body>
+</html>
