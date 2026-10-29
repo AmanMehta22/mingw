@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Development Practicals</title>
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        background: #f5f2ec;
+        color: #1e1e1e;
+        line-height: 1.55;
+    }
+
+    header {
+        background: #1e1e1e;
+        color: #f5f2ec;
+        padding: 28px 20px;
+        text-align: center;
+    }
+
+    header h1 { margin: 0 0 6px; font-size: 1.6rem; letter-spacing: .5px; }
+    header p { margin: 0; opacity: .75; font-size: .95rem; }
+
+    .back {
+        display: inline-block;
+        margin-top: 14px;
+        padding: 4px 14px;
+        font-size: .84rem;
+        color: #f5f2ec;
+        border: 1px solid rgba(245, 242, 236, .45);
+        border-radius: 5px;
+        text-decoration: none;
+        opacity: .8;
+    }
+
+    .back:hover { opacity: 1; background: rgba(245, 242, 236, .12); }
+
+    main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 16px 60px;
+    }
+
+    article {
+        background: #fff;
+        border: 1px solid #ddd6c9;
+        border-radius: 8px;
+        margin-bottom: 28px;
+        overflow: hidden;
+    }
+
+    .q-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid #eee7da;
+        background: #faf7f1;
+    }
+
+    .q-head h2 { margin: 0; font-size: 1.05rem; }
+
+    .q-body { padding: 16px 18px; }
+
+    .question {
+        margin: 0 0 16px;
+        font-size: 1.02rem;
+        white-space: pre-wrap;
+    }
+
+    .file { margin-bottom: 18px; }
+    .file:last-child { margin-bottom: 0; }
+
+    .file-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    .file-name { font-size: .84rem; color: #777; }
+    .file-name strong {
+        color: #1e1e1e;
+        font-family: Consolas, "Courier New", monospace;
+    }
+
+    pre {
+        margin: 0;
+        padding: 16px;
+        background: #1e1e1e;
+        color: #e8e8e8;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: .92rem;
+        line-height: 1.5;
+        tab-size: 4;
+        user-select: text;
+        -webkit-user-select: text;
+    }
+
+    .actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+    button {
+        font: inherit;
+        font-size: .85rem;
+        padding: 6px 14px;
+        border: 1px solid #1e1e1e;
+        background: #1e1e1e;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    button:hover { background: #444; border-color: #444; }
+    button.done { background: #1a7f37; border-color: #1a7f37; }
+
+    .note {
+        text-align: center;
+        color: #777;
+        font-size: .88rem;
+        margin-top: 30px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Web Development Practicals</h1>
+    <p>Questions &amp; complete code â€” click a button to copy</p>
+    <a class="back" href="q7x2.html">&larr; Back to practicals</a>
+</header>
+
+<main><article id="p01">
+    <div class="q-head">
+        <h2>Practical 01 - HTML Table</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create an HTML page that displays a student table with Roll No, Name and Marks as headers and three rows of data.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>table.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Generate Table&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Student Table&lt;/h2&gt;
+
+&lt;table border=&quot;1&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot;&gt;
+&lt;tr&gt;
+  &lt;th&gt;Roll No&lt;/th&gt;
+  &lt;th&gt;Name&lt;/th&gt;
+  &lt;th&gt;Marks&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;Ram&lt;/td&gt;
+  &lt;td&gt;85&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;2&lt;/td&gt;
+  &lt;td&gt;Shyam&lt;/td&gt;
+  &lt;td&gt;92&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;3&lt;/td&gt;
+  &lt;td&gt;Mohan&lt;/td&gt;
+  &lt;td&gt;78&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p02">
+    <div class="q-head">
+        <h2>Practical 02 - Frames</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a frameset page that divides the browser window into three columns, each loading a different page.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>frames.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot; &quot;http://www.w3.org/TR/html401/frameset.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;3 Frames&lt;/title&gt;
+&lt;/head&gt;
+&lt;frameset cols=&quot;33%,33%,34%&quot;&gt;
+  &lt;frame src=&quot;frame1.html&quot;&gt;
+  &lt;frame src=&quot;frame2.html&quot;&gt;
+  &lt;frame src=&quot;frame3.html&quot;&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>frame1.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;Frame 1&lt;/h2&gt;
+&lt;p&gt;This is the first frame.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>frame2.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;Frame 2&lt;/h2&gt;
+&lt;p&gt;This is the second frame.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>frame3.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;Frame 3&lt;/h2&gt;
+&lt;p&gt;This is the third frame.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p03">
+    <div class="q-head">
+        <h2>Practical 03 - CSS (Internal and External)</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Demonstrate internal CSS and external CSS by styling the same two boxes in two separate pages.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>internal.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Internal CSS&lt;/title&gt;
+&lt;style&gt;
+body {
+  font-family: Arial;
+}
+h1 {
+  color: navy;
+  text-align: center;
+}
+.box {
+  width: 200px;
+  height: 100px;
+  background: lightblue;
+  border: 2px solid navy;
+  margin: 10px;
+  padding: 10px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Internal CSS&lt;/h1&gt;
+
+&lt;div class=&quot;box&quot;&gt;Box One&lt;/div&gt;
+&lt;div class=&quot;box&quot;&gt;Box Two&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>external.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;External CSS&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;External CSS&lt;/h1&gt;
+
+&lt;div class=&quot;box&quot;&gt;Box One&lt;/div&gt;
+&lt;div class=&quot;box&quot;&gt;Box Two&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+  font-family: Arial;
+}
+
+h1 {
+  color: navy;
+  text-align: center;
+}
+
+.box {
+  width: 200px;
+  height: 100px;
+  background: lightblue;
+  border: 2px solid navy;
+  margin: 10px;
+  padding: 10px;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p04">
+    <div class="q-head">
+        <h2>Practical 04 - Relative Positioning</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Demonstrate relative positioning by shifting a div from its normal position using top and left.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>relative.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Relative Positioning&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Relative Positioning&lt;/h2&gt;
+
+&lt;div style=&quot;position: relative; top: 40px; left: 100px; background: lightgreen; border: 1px solid green; padding: 20px; width: 250px;&quot;&gt;
+This div is positioned relative to its normal position.
+&lt;/div&gt;
+
+&lt;p&gt;This paragraph stays at its normal position.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p05">
+    <div class="q-head">
+        <h2>Practical 05 - Relative Boxes</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Position three boxes relative to their normal positions using increasing top and left offsets.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>boxes.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Relative Positioning of Boxes&lt;/title&gt;
+&lt;style&gt;
+.box {
+  position: relative;
+  width: 150px;
+  height: 80px;
+  background: lightblue;
+  border: 2px solid navy;
+  margin: 10px;
+  padding: 10px;
+}
+#box1 { top: 20px; left: 20px; }
+#box2 { top: 40px; left: 100px; background: lightgreen; border-color: green; }
+#box3 { top: 60px; left: 200px; background: lightcoral; border-color: red; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Relative Positioning of Boxes&lt;/h2&gt;
+
+&lt;div class=&quot;box&quot; id=&quot;box1&quot;&gt;Box 1&lt;/div&gt;
+&lt;div class=&quot;box&quot; id=&quot;box2&quot;&gt;Box 2&lt;/div&gt;
+&lt;div class=&quot;box&quot; id=&quot;box3&quot;&gt;Box 3&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p06">
+    <div class="q-head">
+        <h2>Practical 06 - Dialog Boxes</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Demonstrate the JavaScript dialog boxes: alert, prompt and confirm, and show the result on the page.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>dialogs.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Dialog Boxes&lt;/title&gt;
+&lt;script&gt;
+function showAlert() {
+  alert(&quot;This is an Alert Box!&quot;);
+}
+
+function showPrompt() {
+  var name = prompt(&quot;Enter your name:&quot;);
+  if (name != null)
+    document.getElementById(&quot;result&quot;).innerHTML = &quot;You entered: &quot; + name;
+}
+
+function showConfirm() {
+  var ans = confirm(&quot;Do you want to continue?&quot;);
+  if (ans)
+    document.getElementById(&quot;result&quot;).innerHTML = &quot;You clicked OK&quot;;
+  else
+    document.getElementById(&quot;result&quot;).innerHTML = &quot;You clicked Cancel&quot;;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Dialog Boxes&lt;/h2&gt;
+
+&lt;button onclick=&quot;showAlert()&quot;&gt;Alert Box&lt;/button&gt;
+&lt;button onclick=&quot;showPrompt()&quot;&gt;Prompt Box&lt;/button&gt;
+&lt;button onclick=&quot;showConfirm()&quot;&gt;Confirm Box&lt;/button&gt;
+
+&lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p07">
+    <div class="q-head">
+        <h2>Practical 07 - Registration Form Validation</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a student registration form and validate the name, email and 10-digit mobile number using JavaScript regular expressions before submitting.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>registration.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Student Registration Form&lt;/title&gt;
+&lt;script&gt;
+function validateForm() {
+  var name = document.getElementById(&quot;name&quot;).value;
+  var email = document.getElementById(&quot;email&quot;).value;
+  var mobile = document.getElementById(&quot;mobile&quot;).value;
+
+  var namePattern = /^[A-Za-z ]{3,}$/;
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var mobilePattern = /^[0-9]{10}$/;
+
+  if (!namePattern.test(name)) {
+    alert(&quot;Name must contain only letters and minimum 3 characters.&quot;);
+    return false;
+  }
+  if (!emailPattern.test(email)) {
+    alert(&quot;Please enter a valid email address.&quot;);
+    return false;
+  }
+  if (!mobilePattern.test(mobile)) {
+    alert(&quot;Mobile number must be exactly 10 digits.&quot;);
+    return false;
+  }
+  alert(&quot;Registration Successful!&quot;);
+  return true;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Student Registration Form&lt;/h2&gt;
+
+&lt;form onsubmit=&quot;return validateForm()&quot;&gt;
+
+Name: &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot;&gt;&lt;br&gt;&lt;br&gt;
+Email: &lt;input type=&quot;text&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;&lt;br&gt;&lt;br&gt;
+Mobile: &lt;input type=&quot;text&quot; id=&quot;mobile&quot; name=&quot;mobile&quot;&gt;&lt;br&gt;&lt;br&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Register&quot;&gt;
+
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p08">
+    <div class="q-head">
+        <h2>Practical 08 - Student Record in XML</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create an XML document that stores one student record (roll no, name, course, semester, email) and display it using an XSL stylesheet.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>data.xml</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;data.xsl&quot;?&gt;
+
+&lt;student&gt;
+    &lt;rollno&gt;101&lt;/rollno&gt;
+    &lt;name&gt;Aman&lt;/name&gt;
+    &lt;course&gt;CSE&lt;/course&gt;
+    &lt;semester&gt;5&lt;/semester&gt;
+    &lt;email&gt;aman@gmail.com&lt;/email&gt;
+&lt;/student&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>data.xsl</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+
+&lt;xsl:template match=&quot;/student&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Student Information&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Student Information&lt;/h2&gt;
+
+&lt;table border=&quot;1&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Roll No&lt;/th&gt;
+    &lt;td&gt;&lt;xsl:value-of select=&quot;rollno&quot;/&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;td&gt;&lt;xsl:value-of select=&quot;name&quot;/&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Course&lt;/th&gt;
+    &lt;td&gt;&lt;xsl:value-of select=&quot;course&quot;/&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Semester&lt;/th&gt;
+    &lt;td&gt;&lt;xsl:value-of select=&quot;semester&quot;/&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Email&lt;/th&gt;
+    &lt;td&gt;&lt;xsl:value-of select=&quot;email&quot;/&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p09">
+    <div class="q-head">
+        <h2>Practical 09 - XSLT Transformation</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Transform an XML document containing student records into an HTML table using XSLT.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>students.xml</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;students.xsl&quot;?&gt;
+
+&lt;students&gt;
+  &lt;student&gt;
+    &lt;roll&gt;1&lt;/roll&gt;
+    &lt;name&gt;Ram&lt;/name&gt;
+    &lt;marks&gt;85&lt;/marks&gt;
+  &lt;/student&gt;
+  &lt;student&gt;
+    &lt;roll&gt;2&lt;/roll&gt;
+    &lt;name&gt;Shyam&lt;/name&gt;
+    &lt;marks&gt;92&lt;/marks&gt;
+  &lt;/student&gt;
+  &lt;student&gt;
+    &lt;roll&gt;3&lt;/roll&gt;
+    &lt;name&gt;Mohan&lt;/name&gt;
+    &lt;marks&gt;78&lt;/marks&gt;
+  &lt;/student&gt;
+&lt;/students&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>students.xsl</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+
+&lt;xsl:template match=&quot;/&quot;&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;h2&gt;Student Data&lt;/h2&gt;
+  &lt;table border=&quot;1&quot; cellpadding=&quot;5&quot; cellspacing=&quot;0&quot;&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Roll No&lt;/th&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Marks&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;xsl:for-each select=&quot;students/student&quot;&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;xsl:value-of select=&quot;roll&quot;/&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;xsl:value-of select=&quot;name&quot;/&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;xsl:value-of select=&quot;marks&quot;/&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/xsl:for-each&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p10">
+    <div class="q-head">
+        <h2>Practical 10 - PHP Variables and Loops</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Write a PHP script to demonstrate variables, arithmetic operators, if-else, while, for and foreach loops.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>variables_loops.php</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;?php
+// Variables and operations
+$a = 20;
+$b = 6;
+
+echo &quot;a = $a and b = $b&lt;br&gt;&quot;;
+echo &quot;Addition       : &quot; . ($a + $b) . &quot;&lt;br&gt;&quot;;
+echo &quot;Subtraction    : &quot; . ($a - $b) . &quot;&lt;br&gt;&quot;;
+echo &quot;Multiplication : &quot; . ($a * $b) . &quot;&lt;br&gt;&quot;;
+echo &quot;Division       : &quot; . ($a / $b) . &quot;&lt;br&gt;&quot;;
+echo &quot;Modulus        : &quot; . ($a % $b) . &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// if - else
+if ($a &gt; $b)
+  echo &quot;$a is greater than $b&lt;br&gt;&lt;br&gt;&quot;;
+else
+  echo &quot;$b is greater than or equal to $a&lt;br&gt;&lt;br&gt;&quot;;
+
+// while loop
+$i = 1;
+echo &quot;While loop : &quot;;
+while ($i &lt;= 5) {
+  echo &quot;$i &quot;;
+  $i++;
+}
+echo &quot;&lt;br&gt;&quot;;
+
+// for loop
+echo &quot;For loop   : &quot;;
+for ($j = 1; $j &lt;= 5; $j++) {
+  echo &quot;$j &quot;;
+}
+echo &quot;&lt;br&gt;&quot;;
+
+// foreach loop
+$colors = array(&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;);
+echo &quot;Foreach loop : &quot;;
+foreach ($colors as $c) {
+  echo &quot;$c &quot;;
+}
+echo &quot;&lt;br&gt;&quot;;
+?&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p11">
+    <div class="q-head">
+        <h2>Practical 11 - PHP Functions</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Write a PHP script to demonstrate string functions, numeric functions, array functions and date functions.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>functions.php</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;?php
+// String functions
+$str = &quot;Hello World&quot;;
+echo &quot;String           : $str&lt;br&gt;&quot;;
+echo &quot;strlen()         : &quot; . strlen($str) . &quot;&lt;br&gt;&quot;;
+echo &quot;strtoupper()     : &quot; . strtoupper($str) . &quot;&lt;br&gt;&quot;;
+echo &quot;strtolower()     : &quot; . strtolower($str) . &quot;&lt;br&gt;&quot;;
+echo &quot;str_replace()    : &quot; . str_replace(&quot;World&quot;, &quot;PHP&quot;, $str) . &quot;&lt;br&gt;&quot;;
+echo &quot;substr()         : &quot; . substr($str, 0, 5) . &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Numeric functions
+$x = -7.6;
+echo &quot;Number           : $x&lt;br&gt;&quot;;
+echo &quot;abs()            : &quot; . abs($x) . &quot;&lt;br&gt;&quot;;
+echo &quot;round()          : &quot; . round($x) . &quot;&lt;br&gt;&quot;;
+echo &quot;floor()          : &quot; . floor($x) . &quot;&lt;br&gt;&quot;;
+echo &quot;ceil()           : &quot; . ceil($x) . &quot;&lt;br&gt;&quot;;
+echo &quot;sqrt(16)         : &quot; . sqrt(16) . &quot;&lt;br&gt;&quot;;
+echo &quot;pow(2, 5)        : &quot; . pow(2, 5) . &quot;&lt;br&gt;&quot;;
+echo &quot;max()            : &quot; . max(4, 9, 2) . &quot;&lt;br&gt;&quot;;
+echo &quot;min()            : &quot; . min(4, 9, 2) . &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Associative array functions
+$marks = array(&quot;Ram&quot; =&gt; 85, &quot;Shyam&quot; =&gt; 92, &quot;Mohan&quot; =&gt; 78);
+echo &quot;Associative Array: &quot;; print_r($marks); echo &quot;&lt;br&gt;&quot;;
+echo &quot;count()          : &quot; . count($marks) . &quot;&lt;br&gt;&quot;;
+echo &quot;array_keys()     : &quot;; print_r(array_keys($marks)); echo &quot;&lt;br&gt;&quot;;
+echo &quot;array_values()   : &quot;; print_r(array_values($marks)); echo &quot;&lt;br&gt;&quot;;
+echo &quot;array_key_exists(): &quot; . (array_key_exists(&quot;Shyam&quot;, $marks) ? &quot;Yes&quot; : &quot;No&quot;) . &quot;&lt;br&gt;&quot;;
+asort($marks);
+echo &quot;asort()          : &quot;; print_r($marks); echo &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Date time functions
+echo &quot;date()           : &quot; . date(&quot;d-m-Y&quot;) . &quot;&lt;br&gt;&quot;;
+echo &quot;Current time     : &quot; . date(&quot;h:i:s A&quot;) . &quot;&lt;br&gt;&quot;;
+echo &quot;time()           : &quot; . time() . &quot;&lt;br&gt;&quot;;
+echo &quot;Full format      : &quot; . date(&quot;D, d M Y H:i:s&quot;) . &quot;&lt;br&gt;&quot;;
+?&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="p12">
+    <div class="q-head">
+        <h2>Practical 12 - JavaScript Events</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Demonstrate the JavaScript events onclick, onmouseover, onmouseout and onselect.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>events.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;JavaScript Events&lt;/title&gt;
+&lt;script&gt;
+function clickEvent() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Button Clicked!&quot;;
+}
+
+function mouseIn() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Mouse Entered the box&quot;;
+  document.getElementById(&quot;box&quot;).style.backgroundColor = &quot;lightgreen&quot;;
+}
+
+function mouseOut() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Mouse Left the box&quot;;
+  document.getElementById(&quot;box&quot;).style.backgroundColor = &quot;lightblue&quot;;
+}
+
+function selectEvent() {
+  var text = document.getElementById(&quot;myText&quot;);
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Selected Text: &quot; +
+    text.value.substring(text.selectionStart, text.selectionEnd);
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Events&lt;/h2&gt;
+
+&lt;button onclick=&quot;clickEvent()&quot;&gt;Click Me&lt;/button&gt;
+
+&lt;div id=&quot;box&quot; style=&quot;width: 250px; height: 80px; background: lightblue; border: 2px solid navy; margin-top: 20px; padding: 10px;&quot;
+     onmouseover=&quot;mouseIn()&quot;
+     onmouseout=&quot;mouseOut()&quot;&gt;
+Mouse Over Me
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;input type=&quot;text&quot; id=&quot;myText&quot; value=&quot;Select this text&quot; onselect=&quot;selectEvent()&quot;&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    </div>
+</article>
+</main>
+
+<p class="note">Each block is one complete file â€” click "Copy code", paste it into a new file with the name shown, and open it in your browser.</p>
+
+<script>
+function copyText(text, btn) {
+    const done = () => {
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        btn.classList.add("done");
+        setTimeout(() => {
+            btn.textContent = old;
+            btn.classList.remove("done");
+        }, 1500);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallback());
+    } else {
+        fallback();
+    }
+
+    function fallback() {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) {}
+        document.body.removeChild(ta);
+    }
+}
+
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    if (btn.classList.contains("copy")) {
+        const code = btn.closest(".file").querySelector("code");
+        if (code) copyText(code.textContent, btn);
+    } else if (btn.classList.contains("copy-q")) {
+        const q = btn.closest("article").querySelector(".question");
+        if (q) copyText(q.textContent, btn);
+    }
+});
+</script>
+
+</body>
+</html>
