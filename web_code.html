@@ -128,14 +128,88 @@
         font-size: .88rem;
         margin-top: 30px;
     }
+
+    .pdf-btn {
+        display: inline-block;
+        margin-top: 14px;
+        margin-left: 8px;
+        padding: 4px 14px;
+        font-size: .84rem;
+        color: #f5f2ec;
+        background: transparent;
+        border: 1px solid rgba(245, 242, 236, .45);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .pdf-btn:hover { background: rgba(245, 242, 236, .12); }
+
+    /* ---------- Print / Save as PDF ---------- */
+    /* Prints dark-on-white and wraps long lines so every character stays
+       real, selectable, copyable text in the saved PDF. */
+    @media print {
+        @page { margin: 12mm; }
+
+        body { background: #fff; color: #000; }
+
+        /* Light text on a dark header would be invisible on paper */
+        header {
+            background: #fff;
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding: 0 0 10px;
+        }
+        header p { opacity: 1; }
+
+        .back, .pdf-btn, .actions { display: none !important; }
+
+        main { max-width: none; padding: 0; }
+
+        article {
+            background: #fff;
+            border: 1px solid #999;
+            border-radius: 0;
+            overflow: visible;   /* never clip code in print */
+            margin-bottom: 16px;
+        }
+
+        .q-head {
+            background: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+
+        .file-head { page-break-after: avoid; break-after: avoid; }
+
+        pre {
+            background: #fff !important;
+            color: #000 !important;      /* dark text -> readable & extractable */
+            border: 1px solid #999;
+            border-radius: 0;
+            /* Wrap instead of scroll so no line is cut off in the PDF */
+            white-space: pre-wrap !important;
+            overflow: visible !important;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            font-size: 9.5pt;
+            line-height: 1.4;
+        }
+
+        /* Guarantee everything stays selectable/copyable in the PDF */
+        * { user-select: text !important; -webkit-user-select: text !important; }
+
+        a { color: #000; text-decoration: none; }
+    }
 </style>
 </head>
 <body>
 
 <header>
     <h1>Web Development Practicals</h1>
-    <p>Questions &amp; complete code â€” click a button to copy</p>
+    <p>Questions &amp; complete code &mdash; click a button to copy</p>
     <a class="back" href="q7x2.html">&larr; Back to practicals</a>
+    <button type="button" class="pdf-btn" onclick="window.print()">Download as PDF (selectable text)</button>
 </header>
 
 <main><article id="p01">
@@ -881,9 +955,1081 @@ Mouse Over Me
     </div>
     </div>
 </article>
+<article id="proj01">
+    <div class="q-head">
+        <h2>Project 01 - Form Validation</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a form with name, email and phone fields, and validate that all fields are filled and the phone number contains exactly 10 digits before submitting.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Form Validation&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form onsubmit=&quot;return validateForm()&quot;&gt;
+        &lt;h2&gt;Form Validation&lt;/h2&gt;
+
+        &lt;label&gt;Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;
+
+        &lt;label&gt;Email:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot;&gt;
+
+        &lt;label&gt;Phone:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;phone&quot;&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightblue;
+}
+
+form {
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function validateForm() {
+    var name = document.getElementById(&quot;name&quot;).value;
+    var email = document.getElementById(&quot;email&quot;).value;
+    var phone = document.getElementById(&quot;phone&quot;).value;
+
+    if (name == &quot;&quot;) {
+        alert(&quot;Please enter your name&quot;);
+        return false;
+    }
+
+    if (email == &quot;&quot;) {
+        alert(&quot;Please enter your email&quot;);
+        return false;
+    }
+
+    if (phone == &quot;&quot;) {
+        alert(&quot;Please enter your phone number&quot;);
+        return false;
+    }
+
+    if (phone.length != 10) {
+        alert(&quot;Phone number must contain 10 digits&quot;);
+        return false;
+    }
+
+    alert(&quot;Form submitted successfully!&quot;);
+    return true;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj02">
+    <div class="q-head">
+        <h2>Project 02 - Student Registration</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a student registration form with name, roll number, course, email and phone, and validate that all fields are filled before registering.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Student Registration&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form onsubmit=&quot;return registerStudent()&quot;&gt;
+        &lt;h2&gt;Student Registration Form&lt;/h2&gt;
+
+        &lt;label&gt;Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;
+
+        &lt;label&gt;Roll Number:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;roll&quot;&gt;
+
+        &lt;label&gt;Course:&lt;/label&gt;
+        &lt;select id=&quot;course&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;Select Course&lt;/option&gt;
+            &lt;option&gt;B.Tech CSE&lt;/option&gt;
+            &lt;option&gt;BCA&lt;/option&gt;
+            &lt;option&gt;MCA&lt;/option&gt;
+            &lt;option&gt;BBA&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;label&gt;Email:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; id=&quot;email&quot;&gt;
+
+        &lt;label&gt;Phone:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;phone&quot;&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Register&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightgray;
+}
+
+form {
+    width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input,
+select {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function registerStudent() {
+    var name = document.getElementById(&quot;name&quot;).value;
+    var roll = document.getElementById(&quot;roll&quot;).value;
+    var course = document.getElementById(&quot;course&quot;).value;
+
+    if (name == &quot;&quot; || roll == &quot;&quot; || course == &quot;&quot;) {
+        alert(&quot;Please fill all fields&quot;);
+        return false;
+    }
+
+    alert(&quot;Student Registered Successfully!&quot;);
+    return true;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj03">
+    <div class="q-head">
+        <h2>Project 03 - Marks Calculator</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a marks calculator that accepts marks of three subjects and displays the total, percentage and grade.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Marks Calculator&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;h2&gt;Marks Calculator&lt;/h2&gt;
+
+        &lt;label&gt;Subject 1:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m1&quot;&gt;
+
+        &lt;label&gt;Subject 2:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m2&quot;&gt;
+
+        &lt;label&gt;Subject 3:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m3&quot;&gt;
+
+        &lt;button onclick=&quot;calculateMarks()&quot;&gt;Calculate&lt;/button&gt;
+
+        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightgreen;
+}
+
+.box {
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function calculateMarks() {
+    var m1 = Number(document.getElementById(&quot;m1&quot;).value);
+    var m2 = Number(document.getElementById(&quot;m2&quot;).value);
+    var m3 = Number(document.getElementById(&quot;m3&quot;).value);
+
+    var total = m1 + m2 + m3;
+    var percentage = total / 3;
+    var grade;
+
+    if (percentage &gt;= 90)
+        grade = &quot;A+&quot;;
+    else if (percentage &gt;= 80)
+        grade = &quot;A&quot;;
+    else if (percentage &gt;= 70)
+        grade = &quot;B&quot;;
+    else if (percentage &gt;= 60)
+        grade = &quot;C&quot;;
+    else if (percentage &gt;= 50)
+        grade = &quot;D&quot;;
+    else
+        grade = &quot;F&quot;;
+
+    document.getElementById(&quot;result&quot;).innerHTML =
+        &quot;Total Marks: &quot; + total +
+        &quot;&lt;br&gt;Percentage: &quot; + percentage.toFixed(2) +
+        &quot;%&lt;br&gt;Grade: &quot; + grade;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj04">
+    <div class="q-head">
+        <h2>Project 04 - Contact Management</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a contact management page that adds a name and phone number to a contact list.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Contact Management&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;h2&gt;Contact Management&lt;/h2&gt;
+
+        &lt;label&gt;Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;
+
+        &lt;label&gt;Phone:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;phone&quot;&gt;
+
+        &lt;button onclick=&quot;addContact()&quot;&gt;Add Contact&lt;/button&gt;
+
+        &lt;h3&gt;Contacts&lt;/h3&gt;
+        &lt;ul id=&quot;contactList&quot;&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightblue;
+}
+
+.box {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+}
+
+li {
+    margin: 10px;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function addContact() {
+    var name = document.getElementById(&quot;name&quot;).value;
+    var phone = document.getElementById(&quot;phone&quot;).value;
+
+    if (name == &quot;&quot; || phone == &quot;&quot;) {
+        alert(&quot;Please enter name and phone number&quot;);
+        return;
+    }
+
+    var list = document.getElementById(&quot;contactList&quot;);
+    var item = document.createElement(&quot;li&quot;);
+
+    item.innerHTML = name + &quot; - &quot; + phone;
+    list.appendChild(item);
+
+    document.getElementById(&quot;name&quot;).value = &quot;&quot;;
+    document.getElementById(&quot;phone&quot;).value = &quot;&quot;;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj05">
+    <div class="q-head">
+        <h2>Project 05 - Password Validation</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a password validator that checks for at least 8 characters, one uppercase letter and one number, and shows the result message.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Password Validation&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;h2&gt;Password Validation&lt;/h2&gt;
+
+        &lt;label&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;
+
+        &lt;button onclick=&quot;validatePassword()&quot;&gt;Validate&lt;/button&gt;
+
+        &lt;p id=&quot;message&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightyellow;
+}
+
+.box {
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function validatePassword() {
+    var password = document.getElementById(&quot;password&quot;).value;
+    var message = document.getElementById(&quot;message&quot;);
+
+    if (password.length &lt; 8) {
+        message.innerHTML = &quot;Password must contain at least 8 characters&quot;;
+        return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+        message.innerHTML = &quot;Password must contain an uppercase letter&quot;;
+        return;
+    }
+
+    if (!/[0-9]/.test(password)) {
+        message.innerHTML = &quot;Password must contain a number&quot;;
+        return;
+    }
+
+    message.innerHTML = &quot;Strong Password!&quot;;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj06">
+    <div class="q-head">
+        <h2>Project 06 - Help Desk</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a help desk form that takes a name and an issue description and shows a confirmation message on submit.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Help Desk&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;h2&gt;Help Desk&lt;/h2&gt;
+
+        &lt;label&gt;Name:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;
+
+        &lt;label&gt;Issue:&lt;/label&gt;
+        &lt;textarea id=&quot;issue&quot;&gt;&lt;/textarea&gt;
+
+        &lt;button onclick=&quot;submitHelp()&quot;&gt;Submit&lt;/button&gt;
+
+        &lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightgray;
+}
+
+.box {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input,
+textarea {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function submitHelp() {
+    var name = document.getElementById(&quot;name&quot;).value;
+    var issue = document.getElementById(&quot;issue&quot;).value;
+
+    if (name == &quot;&quot; || issue == &quot;&quot;) {
+        alert(&quot;Please fill all fields&quot;);
+        return;
+    }
+
+    document.getElementById(&quot;result&quot;).innerHTML =
+        &quot;Thank you &quot; + name + &quot;. Your complaint has been submitted.&quot;;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj07">
+    <div class="q-head">
+        <h2>Project 07 - Quiz Application</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a quiz application with a multiple-choice question and display whether the selected answer is correct or wrong.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Quiz Application&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;h2&gt;Quiz Application&lt;/h2&gt;
+
+        &lt;p id=&quot;question&quot;&gt;&lt;/p&gt;
+
+        &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;A&quot; id=&quot;a&quot;&gt;
+        &lt;label id=&quot;optionA&quot;&gt;&lt;/label&gt;&lt;br&gt;
+
+        &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;B&quot; id=&quot;b&quot;&gt;
+        &lt;label id=&quot;optionB&quot;&gt;&lt;/label&gt;&lt;br&gt;
+
+        &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;C&quot; id=&quot;c&quot;&gt;
+        &lt;label id=&quot;optionC&quot;&gt;&lt;/label&gt;&lt;br&gt;
+
+        &lt;input type=&quot;radio&quot; name=&quot;answer&quot; value=&quot;D&quot; id=&quot;d&quot;&gt;
+        &lt;label id=&quot;optionD&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;button onclick=&quot;checkAnswer()&quot;&gt;Submit&lt;/button&gt;
+        &lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightblue;
+}
+
+.box {
+    width: 450px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+#result {
+    font-weight: bold;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>var correctAnswer = &quot;B&quot;;
+
+document.getElementById(&quot;question&quot;).innerHTML =
+    &quot;Which language is used to style a web page?&quot;;
+
+document.getElementById(&quot;optionA&quot;).innerHTML = &quot;Java&quot;;
+document.getElementById(&quot;optionB&quot;).innerHTML = &quot;CSS&quot;;
+document.getElementById(&quot;optionC&quot;).innerHTML = &quot;Python&quot;;
+document.getElementById(&quot;optionD&quot;).innerHTML = &quot;C&quot;;
+
+function checkAnswer() {
+    var answer = document.querySelector(
+        'input[name=&quot;answer&quot;]:checked'
+    );
+
+    if (answer == null) {
+        alert(&quot;Please select an answer&quot;);
+        return;
+    }
+
+    if (answer.value == correctAnswer) {
+        document.getElementById(&quot;result&quot;).innerHTML =
+            &quot;Correct Answer!&quot;;
+    } else {
+        document.getElementById(&quot;result&quot;).innerHTML =
+            &quot;Wrong Answer!&quot;;
+    }
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj08">
+    <div class="q-head">
+        <h2>Project 08 - Marks Average</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a marks average calculator that accepts marks of four subjects and displays the average.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Marks Average&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;h2&gt;Marks Average Calculator&lt;/h2&gt;
+
+        &lt;label&gt;Subject 1:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m1&quot;&gt;
+
+        &lt;label&gt;Subject 2:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m2&quot;&gt;
+
+        &lt;label&gt;Subject 3:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m3&quot;&gt;
+
+        &lt;label&gt;Subject 4:&lt;/label&gt;
+        &lt;input type=&quot;number&quot; id=&quot;m4&quot;&gt;
+
+        &lt;button onclick=&quot;calculateAverage()&quot;&gt;Calculate Average&lt;/button&gt;
+
+        &lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightgreen;
+}
+
+.box {
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+#result {
+    font-weight: bold;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function calculateAverage() {
+    var m1 = Number(document.getElementById(&quot;m1&quot;).value);
+    var m2 = Number(document.getElementById(&quot;m2&quot;).value);
+    var m3 = Number(document.getElementById(&quot;m3&quot;).value);
+    var m4 = Number(document.getElementById(&quot;m4&quot;).value);
+
+    var average = (m1 + m2 + m3 + m4) / 4;
+
+    document.getElementById(&quot;result&quot;).innerHTML =
+        &quot;Average Marks: &quot; + average.toFixed(2);
+}
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj09">
+    <div class="q-head">
+        <h2>Project 09 - Time Table</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a class time table page that displays the days and time slots in a table.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Time Table&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Class Time Table&lt;/h2&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Day&lt;/th&gt;
+            &lt;th&gt;9:00 - 10:00&lt;/th&gt;
+            &lt;th&gt;10:00 - 11:00&lt;/th&gt;
+            &lt;th&gt;11:00 - 12:00&lt;/th&gt;
+            &lt;th&gt;12:00 - 1:00&lt;/th&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Monday&lt;/td&gt;
+            &lt;td&gt;Java&lt;/td&gt;
+            &lt;td&gt;DBMS&lt;/td&gt;
+            &lt;td&gt;OS&lt;/td&gt;
+            &lt;td&gt;Maths&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Tuesday&lt;/td&gt;
+            &lt;td&gt;OS&lt;/td&gt;
+            &lt;td&gt;Java&lt;/td&gt;
+            &lt;td&gt;Maths&lt;/td&gt;
+            &lt;td&gt;DBMS&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Wednesday&lt;/td&gt;
+            &lt;td&gt;DBMS&lt;/td&gt;
+            &lt;td&gt;Maths&lt;/td&gt;
+            &lt;td&gt;Java&lt;/td&gt;
+            &lt;td&gt;OS&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Thursday&lt;/td&gt;
+            &lt;td&gt;Maths&lt;/td&gt;
+            &lt;td&gt;OS&lt;/td&gt;
+            &lt;td&gt;DBMS&lt;/td&gt;
+            &lt;td&gt;Java&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;Friday&lt;/td&gt;
+            &lt;td&gt;Java&lt;/td&gt;
+            &lt;td&gt;OS&lt;/td&gt;
+            &lt;td&gt;DBMS&lt;/td&gt;
+            &lt;td&gt;Maths&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    text-align: center;
+    background-color: lightyellow;
+}
+
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 15px;
+}
+
+th {
+    background-color: blue;
+    color: white;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>// JavaScript is not required for this static timetable.
+console.log(&quot;Time Table loaded successfully.&quot;);
+</code></pre>
+    </div>
+    </div>
+</article>
+<article id="proj10">
+    <div class="q-head">
+        <h2>Project 10 - Student Login Form</h2>
+        <div class="actions">
+            <button type="button" class="copy-q">Copy question</button>
+        </div>
+    </div>
+    <div class="q-body">
+        <p class="question">Create a student login form that checks the username and password, and displays the login result on the page.</p>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>index.html</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Student Login Form&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form onsubmit=&quot;return login()&quot;&gt;
+        &lt;h2&gt;Student Login&lt;/h2&gt;
+
+        &lt;label&gt;Username:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot;&gt;
+
+        &lt;label&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;Login&lt;/button&gt;
+
+        &lt;p id=&quot;message&quot;&gt;&lt;/p&gt;
+    &lt;/form&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>style.css</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>body {
+    font-family: Arial;
+    background-color: lightgray;
+}
+
+form {
+    width: 350px;
+    margin: 60px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 25px;
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+#message {
+    font-weight: bold;
+}
+</code></pre>
+    </div>
+    <div class="file">
+        <div class="file-head">
+            <span class="file-name">Save as <strong>script.js</strong></span>
+            <button type="button" class="copy">Copy code</button>
+        </div>
+        <pre><code>function login() {
+    var username = document.getElementById(&quot;username&quot;).value;
+    var password = document.getElementById(&quot;password&quot;).value;
+
+    if (username == &quot;&quot; || password == &quot;&quot;) {
+        alert(&quot;Please enter username and password&quot;);
+        return false;
+    }
+
+    if (username == &quot;student&quot; &amp;&amp; password == &quot;1234&quot;) {
+        document.getElementById(&quot;message&quot;).innerHTML =
+            &quot;Login Successful!&quot;;
+    } else {
+        document.getElementById(&quot;message&quot;).innerHTML =
+            &quot;Invalid Username or Password&quot;;
+    }
+
+    return false;
+}
+</code></pre>
+    </div>
+    </div>
+</article>
 </main>
 
-<p class="note">Each block is one complete file â€” click "Copy code", paste it into a new file with the name shown, and open it in your browser.</p>
+<p class="note">Each block is one complete file &mdash; click "Copy code", paste it into a new file with the name shown, and open it in your browser.</p>
 
 <script>
 function copyText(text, btn) {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <h2>Quiz Application</h2>
+
+        <p id="question"></p>
+
+        <input type="radio" name="answer" value="A" id="a">
+        <label id="optionA"></label><br>
+
+        <input type="radio" name="answer" value="B" id="b">
+        <label id="optionB"></label><br>
+
+        <input type="radio" name="answer" value="C" id="c">
+        <label id="optionC"></label><br>
+
+        <input type="radio" name="answer" value="D" id="d">
+        <label id="optionD"></label><br><br>
+
+        <button onclick="checkAnswer()">Submit</button>
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
